@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6ub1353m1k2e"]
+[gd_scene load_steps=5 format=3 uid="uid://b6ub1353m1k2e"]
 
 [ext_resource type="Script" path="res://scripts/PandaPondus.cs" id="1_4l4an"]
 [ext_resource type="Texture2D" uid="uid://ddq8hon5uo7sd" path="res://icon.svg" id="2_lnpw5"]
+[ext_resource type="PackedScene" uid="uid://cbx0wbflq3tir" path="res://scenes/PangPangPedro.tscn" id="3_5cai3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jln46"]
 radius = 19.0
@@ -13,6 +14,10 @@ script = ExtResource("1_4l4an")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.3, 0.5)
 texture = ExtResource("2_lnpw5")
+
+[node name="PangPangPedro" parent="." instance=ExtResource("3_5cai3")]
+position = Vector2(-0.25, 0)
+scale = Vector2(0.982759, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_jln46")

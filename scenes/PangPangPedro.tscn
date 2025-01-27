@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbx0wbflq3tir"]
+
+[ext_resource type="Texture2D" uid="uid://sqgu7jew4i88" path="res://assets/kenney_abstract-platformer/PNG/Items/keyRed.png" id="1_4lqae"]
+[ext_resource type="Script" path="res://scripts/PedroMain.cs" id="2_5uasf"]
+
+[node name="PangPangPedro" type="Sprite2D"]
+rotation = -2.35619
+texture = ExtResource("1_4lqae")
+script = ExtResource("2_5uasf")
+
+[node name="PedroNose" type="Node2D" parent="."]
+position = Vector2(-15, 15)
