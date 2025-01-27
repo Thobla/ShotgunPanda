@@ -23,3 +23,5 @@ scale = Vector2(0.982759, 1)
 shape = SubResource("CapsuleShape2D_jln46")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="ShootSignal" from="PangPangPedro" to="." method="OnPedroRecieveShotSignal"]

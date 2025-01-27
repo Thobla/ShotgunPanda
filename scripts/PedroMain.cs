@@ -4,11 +4,19 @@ using System;
 public partial class PedroMain : Sprite2D
 {
 	private Node2D PedroNose;
+
+	private CharacterBody2D Pondus;
 	// Might not need Nose and Target Vectors 😢
 	private Vector2 NoseVectorRelative = Vector2.Zero;
 	private Vector2 TargetVector = Vector2.Zero;
-	// Called when the node enters the scene tree for the first time.
 
+
+	[Signal]
+	public delegate void ShootSignalEventHandler();
+	private void Shoot()
+	{
+		EmitSignal(SignalName.ShootSignal);
+	}
 
 	private void UpdateVectors()
 	{
@@ -31,6 +39,9 @@ public partial class PedroMain : Sprite2D
 	public override void _Ready()
 	{
 		PedroNose = (Node2D) GetNode("PedroNose");
+		Pondus = (CharacterBody2D)GetNode("..");
+
+		ShootSignal += () => GD.Print("Shooting");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,5 +49,6 @@ public partial class PedroMain : Sprite2D
 	{
 		UpdateVectors();
 		PedroSpin();
+		Shoot();
 	}
 }
