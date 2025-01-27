@@ -16,3 +16,5 @@ texture = ExtResource("2_lnpw5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_jln46")
+
+[node name="Camera2D" type="Camera2D" parent="."]

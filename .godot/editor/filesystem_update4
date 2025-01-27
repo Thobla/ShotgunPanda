@@ -1,3 +1,4 @@
 res://scenes/panda_pondus.tscn
 res://main/Main.tscn
 res://scripts/PandaPondus.cs
+res://scenes/Map.tscn
