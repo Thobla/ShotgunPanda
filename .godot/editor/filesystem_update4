@@ -4,3 +4,4 @@ res://scenes/Map.tscn
 res://scenes/PangPangPedro.tscn
 res://scripts/PandaPondus.cs
 res://scripts/PedroMain.cs
+res://scenes/CooldownTimer.cs

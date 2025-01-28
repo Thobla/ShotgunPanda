@@ -3,26 +3,57 @@ using System;
 
 public partial class PandaPondus : CharacterBody2D
 {
-	public const float Speed = 300.0f;
+	private const float maxSpeed = 400.0f;
+	private const float acceleration = 1500.0f;
+	private const float friction = 600.0f;
 	public const float JumpVelocity = -400.0f;
 	public int JumpCharges = 0;
-	private int JumpChargeLimit = 3;
-	private const float MaxJumpVelocity = -400.0f;
+	private int JumpChargeLimit = 1;
+	private const float MaxJumpVelocity = -550.0f;
+
+	private Sprite2D Pedro;
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
+	private Vector2 input = Vector2.Zero;
+
 
 	private void OnPedroRecieveShotSignal ()
 	{
-		GD.Print("Hello!!!!");	
+		GD.Print("Bang!!!!");	
+		AddJumpCharges(1);
+		ShootKnockback();
+	}
+
+	private void GetInput()
+	{
+		input = Input.GetVector("left", "right", "up", "down").Normalized();
+	}
+
+	private void Knockback(Vector2 force)
+	{
+		Velocity -= force;
+	}
+
+	private void ShootKnockback()
+	{
+		var pedroScript = Pedro as PedroMain;
+		Knockback(pedroScript.TargetVector * pedroScript.Knockback);
+
 	}
 	public override void _Ready()
 	{
+		Pedro = GetNode<Sprite2D>("PangPangPedro");
 	}
 
 	private void ResetJumpCharges() {
 		JumpCharges = JumpChargeLimit;
+	}
+
+	private void AddJumpCharges(int amount)
+	{
+		JumpCharges = Mathf.Min(JumpCharges + amount, JumpChargeLimit);
 	}
 
 	private void Jump(double delta, ref Vector2 velocity)
@@ -33,34 +64,55 @@ public partial class PandaPondus : CharacterBody2D
 		}
 
 		if (!Input.IsActionJustPressed("up") || JumpCharges <= 0) return;
-		velocity.Y = Mathf.Max(JumpVelocity, MaxJumpVelocity);
+		velocity.Y += (Velocity.Y + velocity.Y + JumpVelocity < MaxJumpVelocity) ? Mathf.Min(MaxJumpVelocity - Velocity.Y, 0) : JumpVelocity;
+		if (Velocity.Y + velocity.Y < MaxJumpVelocity)
+		{
+			GD.Print("Velocity will be ", Velocity.Y + velocity.Y, " Which is too mucj");
+		}
 		JumpCharges -= 1;
+	}
+
+	private void MovementAdd(double delta, ref Vector2 velocity)
+	{
+		if (input.X == 0)
+		{
+			if (Mathf.Abs(Velocity.X) > (friction * delta))
+			{
+				velocity.X += (Velocity.X < 0) ? (friction * (float)delta) : -(friction * (float)delta);
+			}
+			else
+			{
+				velocity.X = 0;
+			}
+		}
+		else
+		{
+			var acc = input.X * acceleration * (float) delta;
+			if (input.X < 0)
+			{
+				velocity.X += ((Velocity.X + acc) > -maxSpeed) ? (acc) : 0;
+			}
+			else
+			{
+				velocity.X += ((Velocity.X + acc) < maxSpeed) ? (acc) : 0;
+			}
+		}
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Vector2 velocity = Velocity;
+		GetInput();
+		var velocityAdd = Vector2.Zero;
+		MovementAdd(delta, ref velocityAdd);
 
 		// Add the gravity.
 		if (!IsOnFloor())
-			velocity.Y += gravity * (float)delta;
+			velocityAdd.Y += gravity * (float)delta;
 
 		// Handle Jump.
-		Jump(delta, ref velocity);
+		Jump(delta, ref velocityAdd);
 
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
-		Vector2 direction = Input.GetVector("left", "right", "up", "down");
-		if (direction != Vector2.Zero)
-		{
-			velocity.X = direction.X * Speed;
-		}
-		else
-		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-		}
-
-		Velocity = velocity;
+		Velocity += velocityAdd;
 		MoveAndSlide();
 	}
 }
