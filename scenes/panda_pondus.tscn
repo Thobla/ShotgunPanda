@@ -1,35 +1,49 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6ub1353m1k2e"]
+[gd_scene load_steps=9 format=3 uid="uid://b6ub1353m1k2e"]
 
 [ext_resource type="Script" path="res://scripts/PandaPondus.cs" id="1_4l4an"]
-[ext_resource type="Texture2D" uid="uid://ddq8hon5uo7sd" path="res://icon.svg" id="2_lnpw5"]
+[ext_resource type="Texture2D" uid="uid://bo8533v85y2nc" path="res://PandaAssets/PandaBody.png" id="2_7v2mc"]
 [ext_resource type="PackedScene" uid="uid://cbx0wbflq3tir" path="res://scenes/PangPangPedro.tscn" id="3_5cai3"]
-[ext_resource type="Script" path="res://scenes/CooldownTimer.cs" id="4_xm6hx"]
+[ext_resource type="Texture2D" uid="uid://bovdfys0e2l4i" path="res://PandaAssets/PondusHead.png" id="3_si8bp"]
+[ext_resource type="Script" path="res://scenes/PondusBody.cs" id="3_v8uxp"]
+[ext_resource type="Script" path="res://scenes/PondusHead.cs" id="4_cwedw"]
+[ext_resource type="Texture2D" uid="uid://bq3jrbp0fygwj" path="res://PandaAssets/PondusArm.png" id="7_uuvkk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jln46"]
-radius = 19.0
-height = 62.0
+radius = 14.0
+height = 50.0
 
 [node name="PandaPondus" type="CharacterBody2D"]
 collision_layer = 5
 collision_mask = 3
 script = ExtResource("1_4l4an")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.3, 0.5)
-texture = ExtResource("2_lnpw5")
+[node name="PondusBody" type="Sprite2D" parent="." node_paths=PackedStringArray("pondusPartsRotating", "pondusPartsStatic")]
+texture_filter = 1
+texture = ExtResource("2_7v2mc")
+script = ExtResource("3_v8uxp")
+pondusPartsRotating = [NodePath("PondusHead"), NodePath("PangPangPedro")]
+pondusPartsStatic = [NodePath("PondusArm")]
 
-[node name="PangPangPedro" parent="." instance=ExtResource("3_5cai3")]
-position = Vector2(-0.25, 0)
-scale = Vector2(0.982759, 1)
+[node name="PondusHead" type="Sprite2D" parent="PondusBody"]
+texture_filter = 1
+position = Vector2(-3.33786, -4.84515)
+texture = ExtResource("3_si8bp")
+centered = false
+offset = Vector2(-12.6638, -27.1358)
+script = ExtResource("4_cwedw")
 
-[node name="CooldownTimer" type="Timer" parent="PangPangPedro"]
-one_shot = true
-script = ExtResource("4_xm6hx")
+[node name="PangPangPedro" parent="PondusBody" instance=ExtResource("3_5cai3")]
+position = Vector2(-10, 4)
+
+[node name="PondusArm" type="Sprite2D" parent="PondusBody"]
+texture_filter = 1
+texture = ExtResource("7_uuvkk")
+offset = Vector2(-7, 6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_jln46")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[connection signal="ShootSignal" from="PangPangPedro" to="." method="OnPedroRecieveShotSignal"]
-[connection signal="ShootSignal" from="PangPangPedro" to="PangPangPedro/CooldownTimer" method="OnPedroRecieveShotSignal"]
+[connection signal="ShootSignal" from="PondusBody/PangPangPedro" to="." method="OnPedroRecieveShotSignal"]

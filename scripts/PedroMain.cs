@@ -34,13 +34,9 @@ public partial class PedroMain : Sprite2D
 
 	private void PedroSpin()
 	{
-		//float dot = NoseVector.Dot(TargetVector);
-		//GD.Print(dot);
-		//Rotation = dot;
-		//Rotation = GetGlobalMousePosition().AngleToPoint(GlobalPosition);
-		float AngleSum = NoseVectorRelative.AngleTo(Vector2.Right) + Vector2.Right.AngleTo(TargetVector);
+		//float AngleSum = NoseVectorRelative.AngleTo(Vector2.Right) + Vector2.Right.AngleTo(TargetVector);
+		float AngleSum = Vector2.Right.AngleTo(TargetVector);
 		Rotation = AngleSum;
-		//LookAt(TargetVector + GlobalPosition);
 	}
 	public override void _Ready()
 	{

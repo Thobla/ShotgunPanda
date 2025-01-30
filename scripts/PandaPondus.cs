@@ -44,7 +44,7 @@ public partial class PandaPondus : CharacterBody2D
 	}
 	public override void _Ready()
 	{
-		Pedro = GetNode<Sprite2D>("PangPangPedro");
+		Pedro = GetNode<Sprite2D>("PondusBody/PangPangPedro");
 	}
 
 	private void ResetJumpCharges() {

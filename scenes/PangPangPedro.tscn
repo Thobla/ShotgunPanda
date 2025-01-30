@@ -1,12 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbx0wbflq3tir"]
+[gd_scene load_steps=4 format=3 uid="uid://cbx0wbflq3tir"]
 
-[ext_resource type="Texture2D" uid="uid://sqgu7jew4i88" path="res://assets/kenney_abstract-platformer/PNG/Items/keyRed.png" id="1_4lqae"]
+[ext_resource type="Texture2D" uid="uid://colt74ofwrebi" path="res://PandaAssets/Shotgun.png" id="1_booav"]
 [ext_resource type="Script" path="res://scripts/PedroMain.cs" id="2_5uasf"]
+[ext_resource type="Script" path="res://scenes/CooldownTimer.cs" id="3_wjpdv"]
 
 [node name="PangPangPedro" type="Sprite2D"]
-rotation = -2.35619
-texture = ExtResource("1_4lqae")
+texture_filter = 1
+texture = ExtResource("1_booav")
+offset = Vector2(20, 0)
 script = ExtResource("2_5uasf")
 
 [node name="PedroNose" type="Node2D" parent="."]
 position = Vector2(-15, 15)
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true
+script = ExtResource("3_wjpdv")
+
+[connection signal="ShootSignal" from="." to="CooldownTimer" method="OnPedroRecieveShotSignal"]
