@@ -2,6 +2,8 @@ res://scenes/panda_pondus.tscn
 res://main/Main.tscn
 res://scenes/Map.tscn
 res://scenes/PangPangPedro.tscn
+res://scenes/CooldownTimer.cs
 res://scripts/PandaPondus.cs
 res://scripts/PedroMain.cs
-res://scenes/CooldownTimer.cs
+res://scenes/HostileHomer.tscn
+res://scenes/HostileHomer.cs
