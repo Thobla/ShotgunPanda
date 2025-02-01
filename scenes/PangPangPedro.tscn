@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://colt74ofwrebi" path="res://PandaAssets/Shotgun.png" id="1_booav"]
 [ext_resource type="Script" path="res://scripts/PedroMain.cs" id="2_5uasf"]
-[ext_resource type="Script" path="res://scenes/CooldownTimer.cs" id="3_wjpdv"]
+[ext_resource type="Script" path="res://scripts/CooldownTimer.cs" id="3_k0jtj"]
 
 [node name="PangPangPedro" type="Sprite2D"]
 texture_filter = 1
@@ -15,6 +15,6 @@ position = Vector2(-15, 15)
 
 [node name="CooldownTimer" type="Timer" parent="."]
 one_shot = true
-script = ExtResource("3_wjpdv")
+script = ExtResource("3_k0jtj")
 
 [connection signal="ShootSignal" from="." to="CooldownTimer" method="OnPedroRecieveShotSignal"]

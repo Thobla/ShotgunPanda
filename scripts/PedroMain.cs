@@ -36,7 +36,16 @@ public partial class PedroMain : Sprite2D
 	{
 		//float AngleSum = NoseVectorRelative.AngleTo(Vector2.Right) + Vector2.Right.AngleTo(TargetVector);
 		float AngleSum = Vector2.Right.AngleTo(TargetVector);
-		Rotation = AngleSum;
+		// Rotate the shotgun to follow body flip
+		if (Mathf.Pi / 2 < Mathf.Abs(AngleSum) && (3 * Mathf.Pi / 2) > Mathf.Abs(AngleSum))
+		{
+			Rotation = Mathf.Pi - AngleSum > 0 ? Mathf.Pi - AngleSum : 3 * Mathf.Pi + AngleSum; 
+		}
+		else
+		{
+			Rotation = AngleSum;
+			//Scale = new Vector2(Mathf.Abs(Scale.X), Scale.Y);
+		}
 	}
 	public override void _Ready()
 	{
