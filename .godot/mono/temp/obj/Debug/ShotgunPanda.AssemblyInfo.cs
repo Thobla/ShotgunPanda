@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ShotgunPanda")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d17587d9f8230c5d894e644cbb939b860322433a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e38689997230f0e97f5cd65ebd8cae1682022320")]
 [assembly: System.Reflection.AssemblyProductAttribute("ShotgunPanda")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ShotgunPanda")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

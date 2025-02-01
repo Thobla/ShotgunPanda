@@ -10,7 +10,7 @@ public partial class PedroMain : Sprite2D
 	public Vector2 NoseVectorRelative { get; private set;  } = Vector2.Zero;
 	public Vector2 TargetVector { get; private set; } = Vector2.Zero;
 
-	public float Knockback { get; private set; } = 300.0f;
+	public Vector2 Knockback { get; private set; } = new Vector2(500.0f, 300.0f);
 
 
 	[Signal]
