@@ -1,9 +1,13 @@
 using Godot;
 using System;
 
-public partial class PondusHead : Sprite2D
+public partial class GetHitBox : Area2D, IHitable
 {
-	
+
+	public void Hit(int damage)
+	{
+		GetParent().QueueFree();
+	}
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{

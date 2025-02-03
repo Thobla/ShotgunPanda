@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class PedroMain : Sprite2D
+public partial class PedroMain : Sprite2D, IHitable
 {
 	private Node2D PedroNose;
 	private Timer CooldownTimer;
@@ -15,6 +15,12 @@ public partial class PedroMain : Sprite2D
 
 	[Signal]
 	public delegate void ShootSignalEventHandler();
+
+	public void Hit(int damage)
+	{
+		QueueFree();	
+	}
+
 	private void Shoot()
 	{
 		if (Input.IsActionJustPressed("cursor_left") && CooldownTimer.IsStopped())
