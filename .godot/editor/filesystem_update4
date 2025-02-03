@@ -10,3 +10,4 @@ res://scripts/PandaPondus.cs
 res://scripts/CooldownTimer.cs
 res://scenes/HitArea.cs
 res://scenes/GetHitBox.cs
+res://scenes/PedroVoice.cs
