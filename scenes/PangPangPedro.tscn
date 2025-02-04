@@ -30,6 +30,6 @@ script = ExtResource("3_k0jtj")
 stream = ExtResource("5_c24oh")
 script = ExtResource("6_tn1sm")
 
-[connection signal="ShootSignal" from="." to="CooldownTimer" method="OnPedroRecieveShotSignal"]
 [connection signal="ShootSignal" from="." to="PedroNose/HitArea" method="OnPedroRecieveShotSignal"]
+[connection signal="ShootSignal" from="." to="CooldownTimer" method="OnPedroRecieveShotSignal"]
 [connection signal="ShootSignal" from="." to="Soundeffect" method="OnPedroRecieveShotSignal"]

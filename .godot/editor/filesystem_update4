@@ -3,11 +3,11 @@ res://main/Main.tscn
 res://scenes/Map.tscn
 res://scenes/PangPangPedro.tscn
 res://scenes/HostileHomer.tscn
-res://scripts/HostileHomer.cs
-res://scripts/PedroMain.cs
-res://scripts/PondusParts.cs
-res://scripts/PandaPondus.cs
-res://scripts/CooldownTimer.cs
 res://scenes/HitArea.cs
-res://scenes/GetHitBox.cs
+res://scripts/PondusParts.cs
+res://scripts/HostileHomer.cs
+res://scripts/PandaPondus.cs
 res://scenes/PedroVoice.cs
+res://scripts/PedroMain.cs
+res://scenes/GetHitBox.cs
+res://scripts/CooldownTimer.cs
