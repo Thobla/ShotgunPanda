@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://e5hj1aegsiwl"]
+
+[ext_resource type="Texture2D" uid="uid://c6ffd1lyqi37k" path="res://assets/kenney_abstract-platformer/PNG/Enemies/enemyWalking_1.png" id="1_h462e"]
+[ext_resource type="Script" path="res://scripts/HostileHomer.cs" id="1_x0rgy"]
+[ext_resource type="Script" path="res://scenes/GetHitBox.cs" id="3_05rdg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_htcd5"]
+radius = 15.0
+height = 42.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y7v6v"]
+radius = 17.0
+height = 48.0
+
+[node name="HostileHomer" type="CharacterBody2D"]
+collision_layer = 3
+collision_mask = 5
+script = ExtResource("1_x0rgy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_h462e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_htcd5")
+
+[node name="GetHitBox" type="Area2D" parent="." groups=["HitableArea"]]
+script = ExtResource("3_05rdg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GetHitBox"]
+shape = SubResource("CapsuleShape2D_y7v6v")

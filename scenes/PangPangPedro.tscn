@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbx0wbflq3tir"]
+
+[ext_resource type="Texture2D" uid="uid://colt74ofwrebi" path="res://PandaAssets/Shotgun.png" id="1_booav"]
+[ext_resource type="Script" path="res://scripts/PedroMain.cs" id="2_5uasf"]
+[ext_resource type="Script" path="res://scenes/HitArea.cs" id="3_hnwkb"]
+[ext_resource type="Script" path="res://scripts/CooldownTimer.cs" id="3_k0jtj"]
+[ext_resource type="AudioStream" uid="uid://j4cg3j5e57xk" path="res://audio/ShotgunBang.mp3" id="5_c24oh"]
+[ext_resource type="Script" path="res://scenes/PedroVoice.cs" id="6_tn1sm"]
+
+[node name="PangPangPedro" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_booav")
+offset = Vector2(20, 0)
+script = ExtResource("2_5uasf")
+
+[node name="PedroNose" type="Node2D" parent="."]
+position = Vector2(39, -4)
+
+[node name="HitArea" type="Area2D" parent="PedroNose"]
+script = ExtResource("3_hnwkb")
+
+[node name="HitAreaCollision" type="CollisionPolygon2D" parent="PedroNose/HitArea"]
+polygon = PackedVector2Array(0, 0, 100, -10, 100, 10)
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true
+script = ExtResource("3_k0jtj")
+
+[node name="Soundeffect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_c24oh")
+script = ExtResource("6_tn1sm")
+
+[connection signal="ShootSignal" from="." to="PedroNose/HitArea" method="OnPedroRecieveShotSignal"]
+[connection signal="ShootSignal" from="." to="CooldownTimer" method="OnPedroRecieveShotSignal"]
+[connection signal="ShootSignal" from="." to="Soundeffect" method="OnPedroRecieveShotSignal"]

@@ -1,8 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://wuwuytpfn85r"]
 
-[ext_resource type="PackedScene" uid="uid://b6ub1353m1k2e" path="res://scenes/panda_pondus.tscn" id="1_kadr0"]
+[ext_resource type="PackedScene" uid="uid://bgvqs732de756" path="res://scenes/Map.tscn" id="1_yncfr"]
 
 [node name="Main" type="Node2D"]
 
-[node name="PandaPondus" parent="." instance=ExtResource("1_kadr0")]
-position = Vector2(15, 9)
+[node name="Map" parent="." instance=ExtResource("1_yncfr")]
