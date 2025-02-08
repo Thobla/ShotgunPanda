@@ -90,11 +90,11 @@ public partial class PandaPondus : CharacterBody2D
 			var acc = input.X * acceleration * (float) delta;
 			if (input.X < 0)
 			{
-				velocity.X += ((Velocity.X + acc) > -maxSpeed) ? (acc) : 0;
+				velocity.X += ((Velocity.X + acc) > -maxSpeed) ? (acc) : (friction * (float)delta);
 			}
 			else
 			{
-				velocity.X += ((Velocity.X + acc) < maxSpeed) ? (acc) : 0;
+				velocity.X += ((Velocity.X + acc) < maxSpeed) ? (acc) : -(friction * (float)delta);
 			}
 		}
 	}
