@@ -22,6 +22,7 @@ project/assembly_name="ShotgunPanda"
 [global_group]
 
 HitableArea="Any node that can take damage from the player"
+Player="The player"
 
 [input]
 
